@@ -1,18 +1,18 @@
 version: '3'
 services:
+  mongo:
+    image: mongo
+    volumes:
+      - /data/mongodb/db:/data/db
+    ports:
+      - "27017:27017"
+    restart: always
   web:
     depends_on:
       - mongo
-    restart: always
     build: .
     ports:
       - "3000:3000"
     links:
       - mongo
-  mongo:
     restart: always
-    image: mongo
-    volumes:
-      - ./data/mongodb/db:/data/db
-    ports:
-      - "27017:27017"

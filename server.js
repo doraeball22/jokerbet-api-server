@@ -13,12 +13,11 @@ const server = new Hapi.Server();
 // The connection object takes some
 // configuration, including the port
 mongoose.Promise = global.Promise;
-const dbUrl = `mongodb://${process.env.MONGO_HOST || localhost }:${process.env.MONGO_PORT || 27017 }/${process.env.DB_NAME || jokerbet}`;
+// const dbUrl = `mongodb://${process.env.MONGO_HOST || localhost }:${process.env.MONGO_PORT || 27017 }/${process.env.DB_NAME || jokerbet}`;
 // const dbUrl = `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.DB_NAME}`;
-// const dbUrl = `mongodb://mongo/jokerbet}`;
+const dbUrl = `mongodb://${process.env.MONGO_HOST}/jokerbet`;
 
 server.connection({
-  host: "localhost",
   port: process.env.PORT || 3000,
   routes: {
     cors: {
