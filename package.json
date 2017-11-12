@@ -1,0 +1,39 @@
+{
+  "name": "jokerbet-api-server",
+  "version": "0.1.0",
+  "description": "api for jokerbet.net, coupon and spinwheel",
+  "main": "config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doraeball22/jokerbet-api-server.git"
+  },
+  "keywords": [
+    "nodejs",
+    "hapi",
+    "jwt",
+    "voucher"
+  ],
+  "author": "Bon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/doraeball22/jokerbet-api-server/issues"
+  },
+  "homepage": "https://github.com/doraeball22/jokerbet-api-server#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "boom": "^7.1.1",
+    "dotenv": "^4.0.0",
+    "glob": "^7.1.2",
+    "hapi": "^16.6.2",
+    "hapi-auth-jwt": "^4.0.0",
+    "joi": "^13.0.1",
+    "joi-objectid": "^2.0.0",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.13.1",
+    "voucher-code-generator": "^1.1.1"
+  }
+}
