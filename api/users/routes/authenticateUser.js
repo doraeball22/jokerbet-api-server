@@ -14,12 +14,16 @@ module.exports = {
     // Check the user's password against the DB
     pre: [{ method: verifyCredentials, assign: 'user' }],
     handler: (req, res) => {
+      const id_token = createToken(req.pre.user);
       // If the user's password is correct, we can issue a token.
       // If it was incorrect, the error will bubble up from the pre method
-      res({ id_token: createToken(req.pre.user) }).code(201);
+      res({ id_token: id_token })
+      .header("Authorization", `Bearer ${id_token}`)
+      .code(201);
     },
     validate: {
       payload: authenticateUserSchema
     }
   }
 };
+
