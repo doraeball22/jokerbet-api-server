@@ -30,6 +30,9 @@ module.exports = {
       validate: {
         params: updateCouponSchema.paramsSchema
       },
-      auth: false
+      auth: {
+        strategy: 'jwt',
+        scope: ['admin']
+      }
     }
   };

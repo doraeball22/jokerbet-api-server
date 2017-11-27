@@ -9,6 +9,7 @@ module.exports = {
   method: 'POST',
   path: '/api/coupons/validate',
   config: {
+    auth: false,
     handler: (req, res) => {
         const gameUsername = req.payload.gameUsername;
         const confirmGameUsername = req.payload.confirmGameUsername;
@@ -37,8 +38,7 @@ module.exports = {
                 validCouponToken: createToken(userCoupon)
             }).code(201);
         })
-    },
-    auth: false
+    }
   }
 };
 

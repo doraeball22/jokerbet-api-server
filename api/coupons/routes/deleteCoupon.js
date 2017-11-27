@@ -26,6 +26,9 @@ module.exports = {
             }).code(200);
         })
       },
-      auth: false
+      auth: {
+        strategy: 'jwt',
+        scope: ['admin']
+      }
     }
   };

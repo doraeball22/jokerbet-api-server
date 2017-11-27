@@ -1,18 +1,19 @@
 version: '3'
 services:
   mongo:
-    image: mongo
+    image: mongo:3.4  
     volumes:
       - /data/mongodb/db:/data/db
     ports:
-      - "27017:27017"
+      - "27021:27017"
+    command: mongod --auth
     restart: always
   web:
     depends_on:
       - mongo
     build: .
     ports:
-      - "3000:3000"
+      - "3001:3000"
     links:
       - mongo
     restart: always

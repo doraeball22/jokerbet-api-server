@@ -7,6 +7,10 @@ module.exports = {
   method: 'GET',
   path: '/api/coupons',
   config: {
+    auth: {
+      strategy: 'jwt',
+      scope: ['admin']
+    },
     handler: (req, res) => {
       Coupon.find()
         .exec((err, Coupons) => {
@@ -24,7 +28,6 @@ module.exports = {
         }).code(200);
           
         });
-    },
-    auth: false
+    }
   }
 };

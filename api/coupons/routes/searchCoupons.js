@@ -28,6 +28,9 @@ module.exports = {
           
         });
     },
-    auth: false
+    auth: {
+      strategy: 'jwt',
+      scope: ['admin']
+    }
   }
 };

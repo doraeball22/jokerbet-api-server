@@ -8,7 +8,11 @@ const voucherCodes = require('voucher-code-generator');
 module.exports = {
   method: 'POST',
   path: '/api/coupons',
-  config: {
+  config: {     
+    auth: {
+      strategy: 'jwt',
+      scope: ['admin']
+    },
     handler: (req, res) => {
       let newCoupons = req.payload.newCoupons;
 
@@ -35,21 +39,7 @@ module.exports = {
           }).code(201);
       });
 
-      // coupon.save((err, coupons) => {
-      //   if (err) {
-      //     res(Boom.badRequest(err));
-      //     throw Boom.badRequest(err);
-      //   }
-      //   // If the user is saved successfully, issue a JWT
-      //   res({
-      //       coupons: coupons
-      //   }).code(201);
-      // });  
-    },
-    // Validate the payload against the Joi schema
-    // validate: {
-    //   payload: createUserSchema
-    // } 
-    auth: false
+    }
+
   }
 }

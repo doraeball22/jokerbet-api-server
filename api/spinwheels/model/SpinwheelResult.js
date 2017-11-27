@@ -18,7 +18,8 @@ const Result = new Schema({
 const spinwheelResultModel = new Schema({
     user: String,
     coupon: Coupon,
-    result: Result
+    result: Result,
+    isProvidePrize: { type: Boolean, default: false }
 });
 
 module.exports = mongoose.model('SpinwheelResult', spinwheelResultModel);

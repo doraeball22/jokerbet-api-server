@@ -9,9 +9,7 @@ module.exports = {
   method: 'POST',
   path: '/api/spinwheels',
   config: {
-    auth: {
-        strategy: 'jwt'
-    },
+    auth: false,
     pre: [{ method: removeOneCoupon }],
     handler: (req, res) => {
       let spinwheelResult = new SpinwheelResult(); 
@@ -19,6 +17,10 @@ module.exports = {
       spinwheelResult.user = req.payload.user;
       spinwheelResult.coupon = req.payload.coupon;
       spinwheelResult.result = req.payload.result;
+
+      if(!req.payload.result.win) {
+        spinwheelResult.isProvidePrize = true;
+      }
   
       spinwheelResult.save((err, spinwheelResult) => {
         if (err) {

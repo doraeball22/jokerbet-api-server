@@ -28,7 +28,10 @@ module.exports = {
                 }).code(200);
             })
         },
-        auth: false
+        auth: {
+            strategy: 'jwt',
+            scope: ['admin']
+          }
     }
 };
 // When there are no matches find() returns [], while findOne() returns null. So either use:
