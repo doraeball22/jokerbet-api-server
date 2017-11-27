@@ -16,7 +16,7 @@ mongoose.Promise = global.Promise;
 // const dbUrl = `mongodb://${process.env.MONGO_HOST || localhost }:${process.env.MONGO_PORT || 27017 }/${process.env.DB_NAME || jokerbet}`;
 // const dbUrl = `mongodb://localhost:27017/jokerbet`;
 // const dbUrl = `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.DB_NAME}`;
-const dbUrl = `mongodb://${process.env.MONGO_HOST}/jokerbet`;
+const dbUrl = `mongodb://bon@mynameisbon1994@${process.env.MONGO_HOST}/jokerbet`;
 
 server.connection({
   port: process.env.PORT || 3000,
