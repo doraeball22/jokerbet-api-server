@@ -3,7 +3,7 @@ services:
   mongo:
     image: mongo:3.4  
     volumes:
-      - /data/mongodb/db:/data/db
+      - /data/mongodb/jokerbet_db:/data/db
     ports:
       - "27021:27017"
     command: mongod --auth

@@ -12,7 +12,7 @@ module.exports = {
       scope: ['admin']
     },
     handler: (req, res) => {
-      SpinwheelResult.find()
+      SpinwheelResult.find().sort({created: -1})
       .exec((err, SpinwheelResults) => {
         if (err) {
           res(Boom.badRequest(err));
@@ -20,7 +20,7 @@ module.exports = {
         }
         if (!SpinwheelResults.length) {
           res(Boom.notFound('SpinwheelResult not found!'));
-          throw Boom.notFound('No ASpinwheelResults found!');
+          throw Boom.notFound('No SpinwheelResults found!');
         }
         res({
           success: true,
@@ -31,3 +31,4 @@ module.exports = {
     }
   }
 };
+
