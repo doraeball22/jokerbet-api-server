@@ -14,7 +14,7 @@ module.exports = {
       scope: ['admin']
     },
     handler: (req, res) => {
-      let newCoupons = req.payload.newCoupons;
+      const newCoupons = req.payload.newCoupons;
 
       const couponCodeGenerated = voucherCodes.generate({
         prefix: newCoupons.prefix || null,
@@ -25,7 +25,11 @@ module.exports = {
 
       let arrCoupons = [];
       couponCodeGenerated.forEach((newCode) => {
-          arrCoupons.push({couponCode: newCode})
+          arrCoupons.push(
+            {
+              couponCode: newCode,
+              amount: newCoupons.amount
+            })
       });
 
       Coupon.insertMany(arrCoupons, (err, coupons) => {

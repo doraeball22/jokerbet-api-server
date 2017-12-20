@@ -20,7 +20,7 @@ module.exports = {
         }
         if (!SpinwheelResults.length) {
           res(Boom.notFound('SpinwheelResult not found!'));
-          throw Boom.notFound('No SpinwheelResults found!');
+          throw Boom.notFound('SpinwheelResult not found!');
         }
         res({
           success: true,

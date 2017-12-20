@@ -10,12 +10,10 @@ require('dotenv').config();
 
 const server = new Hapi.Server();
 
-// The connection object takes some
-// configuration, including the port
 mongoose.Promise = global.Promise;
 const options = {
-  user: 'anurak',
-  pass: 'mynameisbon1994',
+  user: process.env.MONGO_INITDB_ROOT_USERNAME,
+  pass: process.env.MONGO_INITDB_ROOT_PASSWORD,
   useMongoClient: true,
   autoIndex: false, // Don't build indexes
   reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
@@ -25,9 +23,15 @@ const options = {
   bufferMaxEntries: 0
 };
 
-// const dbUrl = `mongodb://${process.env.MONGO_HOST || localhost }:${process.env.MONGO_PORT || 27017 }/${process.env.DB_NAME || jokerbet}`;
+const db = {
+  host: process.env.MONGO_HOST,
+  port: process.env.MONGO_PORT,
+  name: process.env.DB_NAME
+}
+
+const dbUrl = `mongodb://${db.host || localhost }:${db.port || 27017 }/${db.name || jokerbet}`;
 // const dbUrl = `mongodb://localhost:27017/jokerbet`;
-const dbUrl = `mongodb://${process.env.MONGO_HOST}/jokerbet`;
+// const dbUrl = `mongodb://${process.env.MONGO_HOST}/jokerbet`;
 
 server.connection({
   port: process.env.PORT || 3000,
@@ -60,12 +64,26 @@ server.register(require('hapi-auth-jwt'), err => {
 });
 
 // Start the server
+// server.start((err) => {
+//   if (err) {
+//     throw err;
+//   }
+//   // Once started, connect to Mongo through Mongoose
+//   mongoose.connect(dbUrl, options).then(
+//     () => {},
+//     err => { throw err }
+//   );
+//   console.info(`Server started at ${server.info.uri}`);
+  
+// });
+
+// Start the server
 server.start((err) => {
   if (err) {
     throw err;
   }
   // Once started, connect to Mongo through Mongoose
-  mongoose.connect(dbUrl, options).then(
+  mongoose.connect(dbUrl).then(
     () => {},
     err => { throw err }
   );

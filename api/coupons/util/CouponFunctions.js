@@ -22,6 +22,26 @@ function removeOneCoupon(req, res) {
   })
 }
 
+function updateOneCoupon(req, res) {
+  const id = req.payload.coupon._id;
+  Coupon.findOneAndUpdate({ _id: id }, { $inc: { amount: -1 } }, (err, coupon) => {
+    if (err) {
+      res(Boom.badRequest(err));
+      throw Boom.badRequest(err);
+    }
+    if (!coupon) {
+      res(Boom.notFound('Coupon not found!'));
+      throw Boom.notFound('Coupon not found!');
+    }
+    if(coupon.amount === 1) {
+      removeOneCoupon(req, res)
+    }
+    else {
+      res(req.payload);
+    }
+  });
+}
+
 function verifyCredentials(req, res) {
   const password = req.payload.password;
 
@@ -47,5 +67,6 @@ function verifyCredentials(req, res) {
 
 module.exports = {
   removeOneCoupon: removeOneCoupon,
+  updateOneCoupon: updateOneCoupon,
   verifyCredentials: verifyCredentials
 };

@@ -15,7 +15,7 @@ function createToken(userCoupon) {
   return jwt.sign(
     userCoupon,
     secret,
-    { algorithm: 'HS256', expiresIn: 60 * 30 }
+    { algorithm: 'HS256', expiresIn: 60 * 5 }
   );
 }
 

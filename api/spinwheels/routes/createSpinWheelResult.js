@@ -4,13 +4,14 @@ const Boom = require('boom');
 const SpinwheelResult = require('../model/SpinwheelResult');
 
 const removeOneCoupon = require('../../coupons/util/CouponFunctions').removeOneCoupon;
+const updateOneCoupon = require('../../coupons/util/CouponFunctions').updateOneCoupon;
 
 module.exports = {
   method: 'POST',
   path: '/api/spinwheels',
   config: {
-    auth: false,
-    pre: [{ method: removeOneCoupon }],
+    auth: { strategy: 'jwt' },
+    pre: [{ method: updateOneCoupon }],
     handler: (req, res) => {
       let spinwheelResult = new SpinwheelResult(); 
 
