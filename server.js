@@ -64,29 +64,29 @@ server.register(require('hapi-auth-jwt'), err => {
 });
 
 // Start the server
-// server.start((err) => {
-//   if (err) {
-//     throw err;
-//   }
-//   // Once started, connect to Mongo through Mongoose
-//   mongoose.connect(dbUrl, options).then(
-//     () => {},
-//     err => { throw err }
-//   );
-//   console.info(`Server started at ${server.info.uri}`);
-  
-// });
-
-// Start the server
 server.start((err) => {
   if (err) {
     throw err;
   }
   // Once started, connect to Mongo through Mongoose
-  mongoose.connect(dbUrl).then(
+  mongoose.connect(dbUrl, options).then(
     () => {},
     err => { throw err }
   );
   console.info(`Server started at ${server.info.uri}`);
   
 });
+
+// // Start the server
+// server.start((err) => {
+//   if (err) {
+//     throw err;
+//   }
+//   // Once started, connect to Mongo through Mongoose
+//   mongoose.connect(dbUrl).then(
+//     () => {},
+//     err => { throw err }
+//   );
+//   console.info(`Server started at ${server.info.uri}`);
+  
+// });
